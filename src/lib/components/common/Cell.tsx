@@ -27,11 +27,11 @@ const Cell = ({
       className={CSS.c_cell}
       style={{ height: height, width: "100%" }}
       onClick={() => {
-        triggerDialog(true, {
-          start,
-          end,
-          [resourceKey]: resourceVal,
-        });
+//         triggerDialog(true, {
+//           start,
+//           end,
+//           [resourceKey]: resourceVal,
+//         });
       }}
       onDragOver={(e) => {
         e.currentTarget.style.backgroundColor = alpha(
