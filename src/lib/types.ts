@@ -148,6 +148,8 @@ export interface SchedulerProps {
   day: DayProps | null;
   /**Initial date selected */
   selectedDate: Date;
+  /**Override the cell click to show add dialogue*/
+  showAddDialog?: boolean;
   /**Events to display */
   events: ProcessedEvent[];
   /**Async function to load remote data */
