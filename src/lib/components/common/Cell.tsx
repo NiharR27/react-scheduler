@@ -1,9 +1,7 @@
-import { alpha, useTheme } from "@mui/material";
-import CSS from "../../assets/css/styles.module.css";
+import { alpha, Button, useTheme } from "@mui/material";
 import { useAppState } from "../../hooks/useAppState";
 
 interface CellProps {
-  height: number;
   start: Date;
   end: Date;
   resourceKey: string;
@@ -12,7 +10,6 @@ interface CellProps {
 }
 
 const Cell = ({
-  height,
   start,
   end,
   resourceKey,
@@ -23,9 +20,8 @@ const Cell = ({
   const theme = useTheme();
 
   return (
-    <div
-      className={CSS.c_cell}
-      style={{ height: height, width: "100%" }}
+    <Button
+      fullWidth
       onClick={() => {
         triggerDialog(true, {
           start,
@@ -50,13 +46,14 @@ const Cell = ({
         e.currentTarget.style.backgroundColor = "";
       }}
       onDrop={(e) => {
+        e.preventDefault();
         e.currentTarget.style.backgroundColor = "";
         const eventId = e.dataTransfer.getData("text");
         onDrop(eventId, start, resourceKey, resourceVal);
       }}
     >
       {children}
-    </div>
+    </Button>
   );
 };
 

@@ -1,28 +1,27 @@
-import { Fragment } from "react";
 import { Typography } from "@mui/material";
 import { format, isToday } from "date-fns";
-import CSS from "../../assets/css/styles.module.css";
 
 interface TodayTypoProps {
   date: Date;
   onClick?(day: Date): void;
+  locale: Locale;
 }
 
-const TodayTypo = ({ date, onClick }: TodayTypoProps) => {
+const TodayTypo = ({ date, onClick, locale }: TodayTypoProps) => {
   return (
-    <Fragment>
+    <div>
       <Typography
         style={{
           fontWeight: isToday(date) ? "bold" : "inherit",
         }}
         color={isToday(date) ? "primary" : "inherit"}
-        className={onClick ? CSS.day_clickable : ""}
+        className={onClick ? "rs__hover__op" : ""}
         onClick={(e) => {
           e.stopPropagation();
           if (onClick) onClick(date);
         }}
       >
-        {format(date, "dd")}
+        {format(date, "dd", {locale: locale})}
       </Typography>
       <Typography
         color={isToday(date) ? "primary" : "inherit"}
@@ -31,9 +30,9 @@ const TodayTypo = ({ date, onClick }: TodayTypoProps) => {
           fontSize: 11,
         }}
       >
-        {format(date, "eee")}
+        {format(date, "eee", {locale: locale})}
       </Typography>
-    </Fragment>
+    </div>
   );
 };
 
